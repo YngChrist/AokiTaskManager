@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Issuel.Application", "Issue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Issuel.Domain", "Issuel.Domain\Issuel.Domain.csproj", "{BA2A2DB3-5D1B-47A6-A29E-270DA63D2EE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Issuel.Infrastructure.Repository", "Issuel.Infrastructure.Repository\Issuel.Infrastructure.Repository.csproj", "{56503BCA-337B-4AD8-851C-D5F16911ABBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{BA2A2DB3-5D1B-47A6-A29E-270DA63D2EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2A2DB3-5D1B-47A6-A29E-270DA63D2EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2A2DB3-5D1B-47A6-A29E-270DA63D2EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56503BCA-337B-4AD8-851C-D5F16911ABBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56503BCA-337B-4AD8-851C-D5F16911ABBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56503BCA-337B-4AD8-851C-D5F16911ABBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56503BCA-337B-4AD8-851C-D5F16911ABBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
