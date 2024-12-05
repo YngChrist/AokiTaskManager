@@ -1,8 +1,5 @@
-﻿namespace Shared.Domain.Exceptions;
+﻿namespace Issuel.Domain.Exceptions;
 
-/// <summary>
-/// Ошибка, возникающая, когда сущность с заданным id уже существует.
-/// </summary>
 public class EntityAlreadyExistsException : Exception
 {
     /// <summary>

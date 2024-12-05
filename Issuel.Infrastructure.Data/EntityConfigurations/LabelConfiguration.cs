@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Issuel.Domain.Entities;
+using Issuel.Domain.Validation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Task.Domain.Entities;
-using Task.Domain.Validation;
 
 namespace Issuel.Infrastructure.Data.EntityConfigurations;
 

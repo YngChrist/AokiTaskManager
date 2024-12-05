@@ -1,4 +1,4 @@
-﻿namespace Task.Domain;
+﻿namespace Issuel.Domain;
 
 public enum Status
 {

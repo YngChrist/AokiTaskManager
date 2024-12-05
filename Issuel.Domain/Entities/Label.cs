@@ -1,4 +1,4 @@
-﻿namespace Task.Domain.Entities;
+﻿namespace Issuel.Domain.Entities;
 
 public class Label : BaseEntity<Label>
 {

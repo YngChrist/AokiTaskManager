@@ -1,6 +1,6 @@
-﻿using Task.Domain.Validation;
+﻿using Issuel.Domain.Validation;
 
-namespace Task.Domain.Entities;
+namespace Issuel.Domain.Entities;
 
 /// <summary>
 /// Задача.

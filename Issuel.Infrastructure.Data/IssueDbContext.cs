@@ -1,7 +1,7 @@
-﻿using Issuel.Infrastructure.Data.EntityConfigurations;
+﻿using Issuel.Domain;
+using Issuel.Domain.Entities;
+using Issuel.Infrastructure.Data.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
-using Task.Domain;
-using Task.Domain.Entities;
 
 namespace Issuel.Infrastructure.Data;
 

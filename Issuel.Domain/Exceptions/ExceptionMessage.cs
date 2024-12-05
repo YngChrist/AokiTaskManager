@@ -1,4 +1,4 @@
-﻿namespace Shared.Domain.Exceptions;
+﻿namespace Issuel.Domain.Exceptions;
 
 /// <summary>
 /// Набор стандартных текстов ошибок.

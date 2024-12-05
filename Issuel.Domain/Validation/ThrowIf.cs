@@ -1,7 +1,7 @@
-﻿using Shared.Domain.Exceptions;
-using Task.Domain.Entities;
+﻿using Issuel.Domain.Entities;
+using Issuel.Domain.Exceptions;
 
-namespace Task.Domain.Validation;
+namespace Issuel.Domain.Validation;
 
 /// <summary>
 /// Повторяющиеся инструменты валидации данных.

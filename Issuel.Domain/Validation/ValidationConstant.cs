@@ -1,4 +1,4 @@
-﻿namespace Task.Domain.Validation;
+﻿namespace Issuel.Domain.Validation;
 
 public static class ValidationConstant
 {
