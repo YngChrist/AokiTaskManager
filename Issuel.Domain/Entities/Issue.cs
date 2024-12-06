@@ -1,4 +1,6 @@
-﻿using Issuel.Domain.Validation;
+﻿using FluentValidation;
+using Issuel.Domain.Validation;
+using Issuel.Domain.Validation.Validators;
 
 namespace Issuel.Domain.Entities;
 
@@ -29,6 +31,8 @@ public class Issue : BaseEntity<Issue>
         Description = description;
         Deadline = deadline;
         Estimate = estimate;
+        
+        new IssueValidator().ValidateAndThrow(this);
     }
 
     public void Update(string title, Priority priority, Status status, string? description = null, DateTime? deadline = null, TimeSpan? estimate = null)
@@ -39,6 +43,8 @@ public class Issue : BaseEntity<Issue>
         Description = description;
         Deadline = deadline;
         Estimate = estimate;
+
+        new IssueValidator().ValidateAndThrow(this);
     }
 
     protected Issue()
