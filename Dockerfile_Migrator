@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+WORKDIR /app
+COPY . .
+RUN dotnet tool install -g dotnet-ef --version 9.0.0
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+ENV CONNECTION_STRING=""
+ENV CONTEXT_PROJECT_PATH=""
+ENV APP_PROJECT_PATH=""
+
+CMD sh -c "dotnet ef database update \
+          --project \"$CONTEXT_PROJECT_PATH\" \
+          --startup-project \"$APP_PROJECT_PATH\" \
+          --connection \"$CONNECTION_STRING\" && touch /app/migration_success || touch /app/migration_failed && \
+          sleep infinity"

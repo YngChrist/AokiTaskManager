@@ -1,17 +1,17 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
+
+RUN apt-get update && apt-get install -y curl
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Issuel.Api/Issuel.Api.csproj", "Issuel.Api/"]
-RUN dotnet restore "Issuel.Api/Issuel.Api.csproj"
 COPY . .
-WORKDIR "/src/Issuel.Api"
-RUN dotnet build "Issuel.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore "src/Issuel.Api/Issuel.Api.csproj"
+RUN dotnet build "src/Issuel.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release

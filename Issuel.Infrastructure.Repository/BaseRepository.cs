@@ -47,6 +47,8 @@ public abstract class BaseRepository<T, TContext> : IRepository<T> where T : Bas
     /// <param name="cancellationToken">Токен для отмены операции.</param>
     public virtual async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
+        Guard.Against.Null(entity);
+        
         await Context.Set<T>().AddAsync(entity, cancellationToken);
     }
 
@@ -57,6 +59,8 @@ public abstract class BaseRepository<T, TContext> : IRepository<T> where T : Bas
     /// <param name="cancellationToken">Токен для отмены операции.</param>
     public virtual Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
     {
+        Guard.Against.Null(entity);
+
         Context.Set<T>().Remove(entity);
 
         return Task.CompletedTask;
