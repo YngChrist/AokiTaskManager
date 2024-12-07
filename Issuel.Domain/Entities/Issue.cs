@@ -45,17 +45,18 @@ public class Issue : BaseEntity<Issue>
     {
     }
 
-    public void AddLabel(Label label)
+    public void SaveLabel(Label label)
     {
-        _labels.Add(label);
-    }
+        var innerLabel = _labels.FirstOrDefault(l => l.Name == label.Name);
 
-    public void UpdateLabel(Guid id, string name)
-    {
-        var label = _labels.FirstOrDefault(x => x.Id == id);
-        ThrowIf.EntityIsNull(label, id, nameof(Label));
-
-        label!.Update(name);
+        if (innerLabel == null)
+        {
+            _labels.Add(label);
+        }
+        else
+        {
+            innerLabel.Update(label.Name);
+        }
     }
     
     public void DeleteLabel(Guid id)
