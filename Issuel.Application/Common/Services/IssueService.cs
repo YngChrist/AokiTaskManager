@@ -9,17 +9,19 @@ using Issuel.Domain.Validation;
 
 namespace Issuel.Application.Common.Services;
 
-public class IssueService
+public class IssueService : IIssueService
 {
     private readonly IIssueRepository _issueRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IssueMapper _issueMapper;
+    private readonly LabelMapper _labelMapper;
     
-    public IssueService(IIssueRepository issueRepository, IssueMapper issueMapper, IUnitOfWork unitOfWork)
+    public IssueService(IIssueRepository issueRepository, IssueMapper issueMapper, IUnitOfWork unitOfWork, LabelMapper labelMapper)
     {
         _issueRepository = issueRepository;
         _issueMapper = issueMapper;
         _unitOfWork = unitOfWork;
+        _labelMapper = labelMapper;
     }
 
     public async Task<IssueDto> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -32,18 +34,48 @@ public class IssueService
         return _issueMapper.Map(issue!);
     }
 
-    public async Task<IssueDto[]> GetAllUndoneAsync(CancellationToken cancellationToken = default)
+    public async Task<PreviewIssueDto[]> GetAllUndoneAsync(CancellationToken cancellationToken = default)
     {
-        var issues = await _issueRepository.SearchAsync(x => x.Status != Status.Done, cancellationToken);
+        var issues = await _issueRepository
+            .SearchAsync<PreviewIssueDto>(x => x.Status != Status.Done, 
+                x => new PreviewIssueDto
+                {
+                    Id = x.Id, 
+                    Title = x.Title, 
+                    Labels = _labelMapper.Map(x.Labels),
+                    Priority = x.Priority,
+                },cancellationToken);
 
-        return _issueMapper.Map(issues);
+        return issues;
     }
     
-    public async Task<IssueDto[]> GetAllDoneAsync(CancellationToken cancellationToken = default)
+    public async Task<PreviewIssueDto[]> GetAllDoneAsync(CancellationToken cancellationToken = default)
     {
-        var issues = await _issueRepository.SearchAsync(x => x.Status == Status.Done, cancellationToken);
+        var issues = await _issueRepository
+            .SearchAsync<PreviewIssueDto>(x => x.Status == Status.Done, 
+                x => new PreviewIssueDto
+                {
+                    Id = x.Id, 
+                    Title = x.Title, 
+                    Labels = _labelMapper.Map(x.Labels),
+                    Priority = x.Priority
+                },cancellationToken);
 
-        return _issueMapper.Map(issues);
+        return issues;
+    }
+    
+    public async Task<PreviewIssueDto[]> GetAllAsync(CancellationToken cancellationToken)
+    {
+        var issues = await _issueRepository
+            .GetAllAsync<PreviewIssueDto>(x => new PreviewIssueDto
+                {
+                    Id = x.Id, 
+                    Title = x.Title, 
+                    Labels = _labelMapper.Map(x.Labels),
+                    Priority = x.Priority
+                },cancellationToken);
+
+        return issues;
     }
 
     public async Task<IssueDto> CreateAsync(CreateIssueRequest request, CancellationToken cancellationToken = default)

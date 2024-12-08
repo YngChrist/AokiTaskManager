@@ -19,7 +19,7 @@ public class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
     /// <summary>
     /// Базовая реализация UnitOfWork.
     /// </summary>
-    protected UnitOfWork(TContext context)
+    public UnitOfWork(TContext context)
     {
         _context = context;
     }

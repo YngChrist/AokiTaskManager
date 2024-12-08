@@ -9,5 +9,5 @@ public partial class LabelMapper
 {
     public partial LabelDto Map(Label label);
     
-    public partial LabelDto[] Map(Label[] labels);
+    public partial LabelDto[] Map(IEnumerable<Label> labels);
 }

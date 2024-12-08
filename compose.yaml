@@ -1,7 +1,0 @@
-﻿services:
-  issuel_api:
-    image: issuel_api
-    build:
-      context: .
-      dockerfile: Issuel.Api/Dockerfile
-    
