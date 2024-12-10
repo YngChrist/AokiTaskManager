@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Personnel.Api.Common.Dto;
+namespace Issuel.Api.Common.Dto;
 
 /// <summary>
 /// Ответ с описанием возникшей ошибки.

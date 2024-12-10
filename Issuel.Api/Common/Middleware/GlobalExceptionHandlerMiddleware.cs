@@ -1,9 +1,9 @@
 using System.Text.Json;
 using FluentValidation;
+using Issuel.Api.Common.Dto;
 using Issuel.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Personnel.Api.Common.Dto;
 
 namespace Issuel.Api.Common.Middleware;
 
@@ -12,6 +12,11 @@ namespace Issuel.Api.Common.Middleware;
 /// </summary>
 public class GlobalExceptionHandlerMiddleware : IMiddleware
 {
+    /// <summary>
+    /// Обработка исключения, возникающие в процессе обработки запросов, и возврат соответствующих ответов.
+    /// </summary>
+    /// <param name="context">Объект с информацией о текущем запросе и ответе.</param>
+    /// <param name="next">Следующее действие в пайплайне обработки запроса.</param>
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try

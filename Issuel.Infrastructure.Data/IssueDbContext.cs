@@ -8,7 +8,6 @@ namespace Issuel.Infrastructure.Data;
 public class IssueDbContext : DbContext
 {
     public DbSet<Issue> Issues => Set<Issue>();
-    public DbSet<Label> Labels => Set<Label>();
 
     public IssueDbContext(DbContextOptions options) : base(options)
     {

@@ -9,13 +9,19 @@ using Issuel.Domain.Validation;
 
 namespace Issuel.Application.Common.Services;
 
+/// <summary>
+/// Сервис, работающий с Issue/
+/// </summary>
 public class IssueService : IIssueService
 {
     private readonly IIssueRepository _issueRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IssueMapper _issueMapper;
     private readonly LabelMapper _labelMapper;
-    
+
+    /// <summary>
+    /// Сервис, работающий с Issue/
+    /// </summary>
     public IssueService(IIssueRepository issueRepository, IssueMapper issueMapper, IUnitOfWork unitOfWork, LabelMapper labelMapper)
     {
         _issueRepository = issueRepository;
@@ -24,6 +30,12 @@ public class IssueService : IIssueService
         _labelMapper = labelMapper;
     }
 
+    /// <summary>
+    /// Получение задачи по идентификатору.
+    /// </summary>
+    /// <param name="id">Идентификатор.</param>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Задача.</returns>
     public async Task<IssueDto> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         Guard.Against.Default(id, nameof(id));
@@ -34,6 +46,11 @@ public class IssueService : IIssueService
         return _issueMapper.Map(issue!);
     }
 
+    /// <summary>
+    /// Получение всех невыполненных задач.
+    /// </summary>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Массив предварительных данных задач.</returns>
     public async Task<PreviewIssueDto[]> GetAllUndoneAsync(CancellationToken cancellationToken = default)
     {
         var issues = await _issueRepository
@@ -48,7 +65,12 @@ public class IssueService : IIssueService
 
         return issues;
     }
-    
+
+    /// <summary>
+    /// Получение всех выполненных задач.
+    /// </summary>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Массив предварительных данных задач.</returns>
     public async Task<PreviewIssueDto[]> GetAllDoneAsync(CancellationToken cancellationToken = default)
     {
         var issues = await _issueRepository
@@ -63,7 +85,12 @@ public class IssueService : IIssueService
 
         return issues;
     }
-    
+
+    /// <summary>
+    /// Получение всех задач.
+    /// </summary>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Массив предварительных данных всех задач.</returns>
     public async Task<PreviewIssueDto[]> GetAllAsync(CancellationToken cancellationToken)
     {
         var issues = await _issueRepository
@@ -78,6 +105,12 @@ public class IssueService : IIssueService
         return issues;
     }
 
+    /// <summary>
+    /// Создание новой задачи.
+    /// </summary>
+    /// <param name="request">Запрос на создание задачи.</param>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Созданная задача.</returns>
     public async Task<IssueDto> CreateAsync(CreateIssueRequest request, CancellationToken cancellationToken = default)
     {
         Guard.Against.Null(request, nameof(CreateIssueRequest));
@@ -92,6 +125,12 @@ public class IssueService : IIssueService
         return _issueMapper.Map(issue);
     }
 
+    /// <summary>
+    /// Обновление задачи.
+    /// </summary>
+    /// <param name="request">Запрос на обновление задачи.</param>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Обновлённая задача.</returns>
     public async Task<IssueDto> UpdateAsync(UpdateIssueRequest request, CancellationToken cancellationToken = default)
     {
         Guard.Against.Null(request, nameof(UpdateIssueRequest));
@@ -121,6 +160,12 @@ public class IssueService : IIssueService
         return _issueMapper.Map(issue);
     }
 
+    /// <summary>
+    /// Удаление задачи по идентификатору.
+    /// </summary>
+    /// <param name="id">Идентификатор задачи.</param>
+    /// <param name="cancellationToken">Токен для отмены операции.</param>
+    /// <returns>Задача завершения операции.</returns>
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         Guard.Against.Default(id, nameof(id));
